@@ -1,19 +1,21 @@
 package edu.mccneb.codeschool.crudapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Entity(name = "Actors")
 public class Actor {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
     private Integer actorId;
-    @Column(name = "dateOfBirth")
+    @Column(name = "dateofbirth")
     private String actorDOB;
-    @Column(name = "firstName")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "lastName")
+    @Column(name = "lastname")
     private String lastName;
 
     public Integer getActorId() {

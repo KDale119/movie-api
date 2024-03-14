@@ -5,31 +5,31 @@ import jakarta.persistence.*;
 @Entity(name = "Directors")
 public class Director {
 
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
-    private Integer directorId;
+    private Integer id;
     @Column(name = "dateOfBirth")
-    private String directorDOB;
+    private String dateOfBirth;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
 
-    public Integer getDirectorId() {
-        return directorId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDirectorId(Integer directorId) {
-        this.directorId = directorId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getDirectorDOB() {
-        return directorDOB;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDirectorDOB(String directorDOB) {
-        this.directorDOB = directorDOB;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getFirstName() {

@@ -1,29 +1,17 @@
 package edu.mccneb.codeschool.crudapi.model;
 
-import jakarta.persistence.*;
-
-import java.util.UUID;
-
-@Entity(name = "Actors")
-public class Actor {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "ID")
-    private Integer id;
-    @Column(name = "dateofbirth")
+public class ActorAdd {
+    private String actorID;
     private String dateOfBirth;
-    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "lastname")
     private String lastName;
 
-    public Integer getId() {
-        return id;
+    public String getActorID() {
+        return actorID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setActorID(String actorID) {
+        this.actorID = actorID;
     }
 
     public String getDateOfBirth() {

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity(name = "Genres")
 public class Genre {
 
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
     private Integer genreId;

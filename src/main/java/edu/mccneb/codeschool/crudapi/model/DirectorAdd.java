@@ -1,19 +1,10 @@
 package edu.mccneb.codeschool.crudapi.model;
 
-import jakarta.persistence.*;
+public class DirectorAdd {
 
-@Entity(name = "Directors")
-public class Director {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "ID")
     private Integer id;
-    @Column(name = "dateofbirth")
     private String dateOfBirth;
-    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "lastname")
     private String lastName;
 
     public Integer getId() {

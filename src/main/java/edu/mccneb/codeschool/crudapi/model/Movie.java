@@ -8,44 +8,44 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
-    private Integer movieId;
-    @Column(name = "movieLength")
-    private String movieLength;
-    @Column(name = "movieName")
-    private String movieName;
-    @Column(name = "releaseDate")
+    private Integer id;
+    @Column(name = "movielength")
+    private Integer movieLength;
+    @Column(name = "moviename")
+    private String movieTitle;
+    @Column(name = "releasedate")
     private String releaseDate;
-    @Column(name = "trailerUrl")
+    @Column(name = "trailerurl")
     private String trailerUrl;
-    @Column(name = "directorId")
+    @Column(name = "directorid")
     private Integer directorId;
-    @Column(name = "genreId")
+    @Column(name = "genreid")
     private Integer genreId;
-    @Column(name = "ratingId")
+    @Column(name = "ratingid")
     private Integer ratingId;
 
-    public Integer getMovieId() {
-        return movieId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setMovieId(Integer movieId) {
-        this.movieId = movieId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getMovieLength() {
+    public Integer getMovieLength() {
         return movieLength;
     }
 
-    public void setMovieLength(String movieLength) {
+    public void setMovieLength(Integer movieLength) {
         this.movieLength = movieLength;
     }
 
-    public String getMovieName() {
-        return movieName;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public String getReleaseDate() {

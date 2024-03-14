@@ -1,17 +1,17 @@
 package edu.mccneb.codeschool.crudapi.model;
 
 public class ActorAdd {
-    private String actorID;
+    private Integer id;
     private String dateOfBirth;
     private String firstName;
     private String lastName;
 
-    public String getActorID() {
-        return actorID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setActorID(String actorID) {
-        this.actorID = actorID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDateOfBirth() {

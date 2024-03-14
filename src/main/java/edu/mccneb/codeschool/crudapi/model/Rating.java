@@ -8,18 +8,18 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ID")
-    private Integer ratingId;
+    private Integer id;
     @Column(name = "description")
     private String description;
     @Column(name = "rating")
     private String rating;
 
-    public Integer getRatingId() {
-        return ratingId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRatingId(Integer ratingId) {
-        this.ratingId = ratingId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescription() {

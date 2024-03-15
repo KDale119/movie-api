@@ -30,7 +30,7 @@ public class DirectorController {
     public ResponseEntity<Director> deleteDirector(@PathVariable Integer id) {
         return directorService.deleteDirector(id);
     }
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<DirectorAdd> createDirector(@RequestBody DirectorAdd add) {
         return directorService.addDirector(add);
     }

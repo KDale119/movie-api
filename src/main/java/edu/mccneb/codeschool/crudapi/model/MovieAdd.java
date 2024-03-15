@@ -1,31 +1,13 @@
 package edu.mccneb.codeschool.crudapi.model;
 
-import jakarta.persistence.*;
-
-@Entity(name = "Movies")
-public class Movie {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "ID")
+public class MovieAdd {
     private Integer id;
-    @Column(name = "movielength")
     private Integer movieLength;
-    @Column(name = "moviename")
     private String movieTitle;
-    @Column(name = "releasedate")
     private String releaseDate;
-    @Column(name = "trailerurl")
     private String trailerUrl;
-
-    @ManyToOne()
-    @JoinColumn(name = "directorid")
     private Director director;
-    @ManyToOne()
-    @JoinColumn(name = "genreid")
     private Genre genre;
-    @ManyToOne()
-    @JoinColumn(name = "ratingid")
     private Rating rating;
 
     public Integer getId() {

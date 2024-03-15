@@ -32,7 +32,7 @@ public class ActorController {
         return actorService.deleteActor(id);
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<ActorAdd> createActor(@RequestBody ActorAdd add) {
         return actorService.addActor(add);
     }

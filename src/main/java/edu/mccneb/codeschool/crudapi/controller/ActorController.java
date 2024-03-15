@@ -1,7 +1,6 @@
 package edu.mccneb.codeschool.crudapi.controller;
 
 import edu.mccneb.codeschool.crudapi.model.Actor;
-import edu.mccneb.codeschool.crudapi.model.ActorAdd;
 import edu.mccneb.codeschool.crudapi.service.ActorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,7 @@ public class ActorController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ActorAdd> createActor(@RequestBody ActorAdd add) {
+    public ResponseEntity<Actor> createActor(@RequestBody Actor add) {
         return actorService.addActor(add);
     }
 

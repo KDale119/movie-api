@@ -1,10 +1,7 @@
 package edu.mccneb.codeschool.crudapi.service;
 
 import edu.mccneb.codeschool.crudapi.Repository.DirectorRepository;
-import edu.mccneb.codeschool.crudapi.model.Actor;
-import edu.mccneb.codeschool.crudapi.model.ActorAdd;
 import edu.mccneb.codeschool.crudapi.model.Director;
-import edu.mccneb.codeschool.crudapi.model.DirectorAdd;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,30 +31,26 @@ public class DirectorService {
     }
 
     public ResponseEntity<Director> deleteDirector(Integer id) {
-        Director director = directorRepository.findById(id).get();
-        if (director != null) {
-            directorRepository.delete(director);
+        Optional<Director> director = directorRepository.findById(id);
+        if (director.isPresent()) {
+            directorRepository.delete(director.get());
             return new ResponseEntity<>(null, HttpStatus. NO_CONTENT);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-    public ResponseEntity<DirectorAdd> addDirector(DirectorAdd add) {
-        Director director = new Director();
-        director.setId(director.getId());
-        director.setDateOfBirth(add.getDateOfBirth());
-        director.setFirstName(add.getFirstName());
-        director.setLastName(add.getLastName());
-        director = directorRepository.save(director);
+    public ResponseEntity<Director> addDirector(Director add) {
+        add = directorRepository.save(add);
         return ResponseEntity.ok(add);
     }
 
     public ResponseEntity<Director> updateDirector(Integer id, Director update) {
-        Director updatedDirector =  directorRepository.findById(id).get();
-        updatedDirector.setDateOfBirth(update.getDateOfBirth());
-        updatedDirector.setFirstName(update.getFirstName());
-        updatedDirector.setLastName(update.getLastName());
-        updatedDirector = directorRepository.save(updatedDirector);
-        return ResponseEntity.ok(updatedDirector);
+        Optional<Director> updatedDirector =  directorRepository.findById(id);
+        if (updatedDirector.isPresent()) {
+            update = directorRepository.save(update);
+            return ResponseEntity.ok(updatedDirector.get());
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -18,13 +18,13 @@ public class Movie {
     @Column(name = "trailerurl")
     private String trailerUrl;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "directorid")
     private Director director;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "genreid")
     private Genre genre;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "ratingid")
     private Rating rating;
 

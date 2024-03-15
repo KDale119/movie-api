@@ -29,7 +29,7 @@ public class MovieController {
         return movieService.deleteMovie(id);
     }
     @PostMapping("/")
-    public ResponseEntity<MovieAdd> createMovie(@RequestBody MovieAdd add) {
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie add) {
         return movieService.addMovie(add);
     }
 

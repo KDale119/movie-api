@@ -39,29 +39,18 @@ public class MovieService {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-    public ResponseEntity<MovieAdd> addMovie(MovieAdd add) {
-        Movie movie = new Movie();
-        movie.setId(movie.getId());
-        movie.setMovieLength(add.getMovieLength());
-        movie.setMovieTitle(add.getMovieTitle());
-        movie.setReleaseDate(add.getReleaseDate());
-        movie.setTrailerUrl(add.getTrailerUrl());
-        movie.setDirector(add.getDirector());
-        movie.setGenre(add.getGenre());
-        movie.setRating(add.getRating());
-        movie = movieRepository.save(movie);
+    public ResponseEntity<Movie> addMovie(Movie add) {
+        add = movieRepository.save(add);
         return ResponseEntity.ok(add);
     }
     public ResponseEntity<Movie> updateMovie(Integer id, Movie update) {
-        Movie updatedMovie =  movieRepository.findById(id).get();
-        updatedMovie.setMovieLength(update.getMovieLength());
-        updatedMovie.setMovieTitle(update.getMovieTitle());
-        updatedMovie.setReleaseDate(update.getReleaseDate());
-        updatedMovie.setTrailerUrl(update.getTrailerUrl());
-        updatedMovie.setDirector(update.getDirector());
-        updatedMovie.setGenre(update.getGenre());
-        updatedMovie.setRating(update.getRating());
-        updatedMovie = movieRepository.save(updatedMovie);
-        return ResponseEntity.ok(updatedMovie);
+        Optional<Movie> updatedMovie =  movieRepository.findById(id);
+        if (updatedMovie.isPresent()) {
+            update = movieRepository.save(update);
+            return ResponseEntity.ok(updatedMovie.get());
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
     }
 }

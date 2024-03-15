@@ -2,8 +2,6 @@ package edu.mccneb.codeschool.crudapi.service;
 
 import edu.mccneb.codeschool.crudapi.Repository.ActorRepository;
 import edu.mccneb.codeschool.crudapi.model.Actor;
-import edu.mccneb.codeschool.crudapi.model.ActorAdd;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -44,22 +42,19 @@ public class ActorService {
         }
     }
 
-    public ResponseEntity<ActorAdd> addActor(ActorAdd add) {
-        Actor actor = new Actor();
-        actor.setId(actor.getId());
-        actor.setDateOfBirth(add.getDateOfBirth());
-        actor.setFirstName(add.getFirstName());
-        actor.setLastName(add.getLastName());
-        actor = actorRepository.save(actor);
+    public ResponseEntity<Actor> addActor(Actor add) {
+        add = actorRepository.save(add);
         return ResponseEntity.ok(add);
     }
 
     public ResponseEntity<Actor> updateActor(Integer id, Actor update) {
-        Actor updatedActor =  actorRepository.findById(id).get();
-        updatedActor.setDateOfBirth(update.getDateOfBirth());
-        updatedActor.setFirstName(update.getFirstName());
-        updatedActor.setLastName(update.getLastName());
-        updatedActor = actorRepository.save(updatedActor);
-        return ResponseEntity.ok(updatedActor);
+        Optional<Actor> updatedActor =  actorRepository.findById(id);
+        if (updatedActor.isPresent()) {
+            update = actorRepository.save(update);
+            return ResponseEntity.ok(updatedActor.get());
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
     }
 }

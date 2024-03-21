@@ -1,6 +1,4 @@
-#api:
-#  :
-#    host: https://developer.themoviedb.org
-#    path: /current.json
-#    api-host: https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1
-#    api-key: 402a1dacfdfe0fca4d0b9bfe250cae7d
+api:
+  host: https://api.themoviedb.org
+  path: /3/search/movie
+  api-key: 402a1dacfdfe0fca4d0b9bfe250cae7d

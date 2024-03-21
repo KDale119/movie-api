@@ -18,6 +18,7 @@ public class Movie {
     @Column(name = "trailerurl")
     private String trailerUrl;
 
+    private String overview;
     @ManyToOne
     @JoinColumn(name = "directorid")
     private Director director;
@@ -27,6 +28,7 @@ public class Movie {
     @ManyToOne
     @JoinColumn(name = "ratingid")
     private Rating rating;
+
 
     public Integer getId() {
         return id;
@@ -66,6 +68,14 @@ public class Movie {
 
     public void setTrailerUrl(String trailerUrl) {
         this.trailerUrl = trailerUrl;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
     public Director getDirector() {

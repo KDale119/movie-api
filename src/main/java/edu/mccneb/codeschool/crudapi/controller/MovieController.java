@@ -2,6 +2,7 @@ package edu.mccneb.codeschool.crudapi.controller;
 
 import edu.mccneb.codeschool.crudapi.model.*;
 import edu.mccneb.codeschool.crudapi.service.MovieService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/movies")
+@Tag(name = "Movie Controller")
 public class MovieController {
     private final MovieService movieService;
 

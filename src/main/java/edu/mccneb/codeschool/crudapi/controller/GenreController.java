@@ -3,6 +3,7 @@ package edu.mccneb.codeschool.crudapi.controller;
 import edu.mccneb.codeschool.crudapi.model.Actor;
 import edu.mccneb.codeschool.crudapi.model.Genre;
 import edu.mccneb.codeschool.crudapi.service.GenreService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/genres")
+@Tag(name = "Genre Controller")
 public class GenreController {
     private final GenreService genreService;
 

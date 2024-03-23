@@ -17,7 +17,7 @@ public class Movie {
     private String releaseDate;
     @Column(name = "trailerurl")
     private String trailerUrl;
-
+    @Transient
     private String overview;
     @ManyToOne
     @JoinColumn(name = "directorid")

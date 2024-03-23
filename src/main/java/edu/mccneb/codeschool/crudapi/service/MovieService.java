@@ -1,6 +1,8 @@
 package edu.mccneb.codeschool.crudapi.service;
 
 import edu.mccneb.codeschool.crudapi.Repository.MovieRepository;
+import edu.mccneb.codeschool.crudapi.client.MovieClient;
+import edu.mccneb.codeschool.crudapi.mapper.MovieMapper;
 import edu.mccneb.codeschool.crudapi.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +13,13 @@ import java.util.Optional;
 
 @Service
 public class MovieService {
+    private final MovieClient movieClient;
+    private final MovieMapper movieMapper;
     private final MovieRepository movieRepository;
 
-    public MovieService(MovieRepository movieRepository) {
+    public MovieService(MovieClient movieClient, MovieMapper movieMapper, MovieRepository movieRepository) {
+        this.movieClient = movieClient;
+        this.movieMapper = movieMapper;
         this.movieRepository = movieRepository;
     }
 
@@ -24,7 +30,10 @@ public class MovieService {
     public ResponseEntity<Movie> findMovieById(Integer id) {
         Optional<Movie> optionalMovie =  movieRepository.findById(id);
         if (optionalMovie.isPresent()) {
-            return ResponseEntity.ok(optionalMovie.get());
+            Movie movie = optionalMovie.get();
+            Results results = movieClient.getOverview(movie.getMovieTitle());
+            Movie mappedMovie = movieMapper.mapMovie(results, movie);
+            return ResponseEntity.ok(mappedMovie);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -51,6 +60,7 @@ public class MovieService {
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-
     }
+
+
 }

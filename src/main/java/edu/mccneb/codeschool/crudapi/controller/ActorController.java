@@ -2,6 +2,7 @@ package edu.mccneb.codeschool.crudapi.controller;
 
 import edu.mccneb.codeschool.crudapi.model.Actor;
 import edu.mccneb.codeschool.crudapi.service.ActorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/actors")
+@Tag(name = "Actor Controller")
 public class ActorController {
     private final ActorService actorService;
 

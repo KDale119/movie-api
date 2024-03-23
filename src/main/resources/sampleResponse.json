@@ -1,0 +1,107 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/en971MEXui9diirXlogOrPKmsEn.jpg",
+      "genre_ids": [
+        28,
+        12,
+        35
+      ],
+      "id": 293660,
+      "original_language": "en",
+      "original_title": "Deadpool",
+      "overview": "The origin story of former Special Forces operative turned mercenary Wade Wilson, who, after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.",
+      "popularity": 145.114,
+      "poster_path": "/fSRb7vyIP8rQpL0I47P3qUsEKX3.jpg",
+      "release_date": "2016-02-09",
+      "title": "Deadpool",
+      "video": false,
+      "vote_average": 7.61,
+      "vote_count": 29617
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3P52oz9HPQWxcwHOwxtyrVV1LKi.jpg",
+      "genre_ids": [
+        28,
+        35,
+        12
+      ],
+      "id": 383498,
+      "original_language": "en",
+      "original_title": "Deadpool 2",
+      "overview": "Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.",
+      "popularity": 128.223,
+      "poster_path": "/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg",
+      "release_date": "2018-05-10",
+      "title": "Deadpool 2",
+      "video": false,
+      "vote_average": 7.488,
+      "vote_count": 16875
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/nbq3LfgLXnL5ixZ1Q74jTJmhmTS.jpg",
+      "genre_ids": [
+        28,
+        35,
+        878
+      ],
+      "id": 533535,
+      "original_language": "en",
+      "original_title": "Deadpool \u0026 Wolverine",
+      "overview": "Third entry in the \"Deadpool\" franchise. Plot TBA.",
+      "popularity": 119.146,
+      "poster_path": "/uxBHXaoOvAwy4NpPpP7nNx2rXYQ.jpg",
+      "release_date": "2024-07-24",
+      "title": "Deadpool \u0026 Wolverine",
+      "video": false,
+      "vote_average": 0.0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5ZSwZPKgcTJJwhxjbOHeoBTVaKh.jpg",
+      "genre_ids": [
+        35,
+        28,
+        12
+      ],
+      "id": 567604,
+      "original_language": "en",
+      "original_title": "Once Upon a Deadpool",
+      "overview": "A kidnapped Fred Savage is forced to endure Deadpool's PG-13 rendition of Deadpool 2 as a Princess Bride-esque story that's full of magic, wonder \u0026 zero F's.",
+      "popularity": 48.623,
+      "poster_path": "/5Ka49BWWyKMXr93YMbH5wLN7aAM.jpg",
+      "release_date": "2018-12-11",
+      "title": "Once Upon a Deadpool",
+      "video": false,
+      "vote_average": 7.1,
+      "vote_count": 698
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gsljBGOjBkbuNt3gvIDXQWnudn.jpg",
+      "genre_ids": [
+        28,
+        35,
+        80
+      ],
+      "id": 558144,
+      "original_language": "en",
+      "original_title": "Deadpool: No Good Deed",
+      "overview": "Deadpool sees an opportunity to save the day, but it doesn't go entirely as planned.",
+      "popularity": 35.664,
+      "poster_path": "/wlKU9yB0Q8nfPMakBcSBT0JGS7.jpg",
+      "release_date": "2017-03-03",
+      "title": "Deadpool: No Good Deed",
+      "video": false,
+      "vote_average": 7.153,
+      "vote_count": 464
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 5
+}

@@ -1,4 +1,0 @@
-api:
-  host: https://api.themoviedb.org
-  path: /3/search/movie
-  api-key: 402a1dacfdfe0fca4d0b9bfe250cae7d

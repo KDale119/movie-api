@@ -18,6 +18,7 @@ public class MovieClient {
         this.restTemplate = restTemplate;
     }
 
+
     public Results getOverview(String q){
         ExternalMovieAPI response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getPath(), ExternalMovieAPI.class, q, apiConfig.getApiKey());
         return response.getResults().stream().findFirst().get();

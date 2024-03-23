@@ -19,8 +19,6 @@ public class CrudApiApplication {
 	public RestTemplate restTemplate(RestTemplateBuilder builder){
 		return new RestTemplateBuilder().interceptors(
 				(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) -> {
-					request.getHeaders().set("X-RapidAPI-Key", "402a1dacfdfe0fca4d0b9bfe250cae7d");
-					request.getHeaders().set("X-RapidAPI-Host", "https://api.themoviedb.org");
 					return execution.execute(request, body);
 				}
 		).build();

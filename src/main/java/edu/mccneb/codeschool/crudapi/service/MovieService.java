@@ -4,10 +4,13 @@ import edu.mccneb.codeschool.crudapi.Repository.MovieRepository;
 import edu.mccneb.codeschool.crudapi.client.MovieClient;
 import edu.mccneb.codeschool.crudapi.mapper.MovieMapper;
 import edu.mccneb.codeschool.crudapi.model.*;
+import edu.mccneb.codeschool.crudapi.utils.SSLUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +34,13 @@ public class MovieService {
         Optional<Movie> optionalMovie =  movieRepository.findById(id);
         if (optionalMovie.isPresent()) {
             Movie movie = optionalMovie.get();
+            try {
+                SSLUtils.turnOffSslChecking();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            } catch (KeyManagementException e) {
+                throw new RuntimeException(e);
+            }
             Results results = movieClient.getOverview(movie.getMovieTitle());
             Movie mappedMovie = movieMapper.mapMovie(results, movie);
             return ResponseEntity.ok(mappedMovie);

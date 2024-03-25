@@ -3,6 +3,7 @@ package edu.mccneb.codeschool.crudapi.controller;
 import edu.mccneb.codeschool.crudapi.model.Actor;
 import edu.mccneb.codeschool.crudapi.model.Rating;
 import edu.mccneb.codeschool.crudapi.service.RatingService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,10 @@ public class RatingController {
     }
 
     @GetMapping
+    @Operation(
+            description = "Get All Ratings",
+            summary = "Returns all ratings"
+    )
     public ResponseEntity<List<Rating>> getRatings(){
         return ratingService.getRatings();
     }

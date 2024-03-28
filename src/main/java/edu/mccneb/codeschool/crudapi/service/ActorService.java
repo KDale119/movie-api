@@ -44,8 +44,10 @@ public class ActorService {
 
     public ResponseEntity<Actor> addActor(Actor add) {
         add = actorRepository.save(add);
+//        System.out.println(add);
         return ResponseEntity.ok(add);
     }
+
 
     public ResponseEntity<Actor> updateActor(Integer id, Actor update) {
         Optional<Actor> updatedActor =  actorRepository.findById(id);

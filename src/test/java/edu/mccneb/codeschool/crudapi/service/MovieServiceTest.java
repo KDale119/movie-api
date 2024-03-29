@@ -3,6 +3,7 @@ package edu.mccneb.codeschool.crudapi.service;
 import edu.mccneb.codeschool.crudapi.Repository.MovieRepository;
 import edu.mccneb.codeschool.crudapi.client.MovieClient;
 import edu.mccneb.codeschool.crudapi.mapper.MovieMapper;
+import edu.mccneb.codeschool.crudapi.model.Actor;
 import edu.mccneb.codeschool.crudapi.model.Movie;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -71,6 +72,26 @@ public class MovieServiceTest {
         assertThat(response.getStatusCode().value()).isEqualTo(404);
         assertThat(response.getBody()).isNull();
     }
+
+    @Test
+    @DisplayName("Delete Movie - Not Found")
+    void test_deleteMovie_NotFound(){
+        when(movieRepository.findById(any())).thenReturn(Optional.empty());
+
+        ResponseEntity<Movie> response = subject.deleteMovie(123);
+        assertThat(response.getStatusCode().value()).isEqualTo(404);
+    }
+
+    @Test
+    @DisplayName("Update Movie")
+    void test_updateMovie(){
+        Movie updated = new Movie();
+        when(movieRepository.save(any())).thenReturn(updated);
+        when(movieRepository.findById(any())).thenReturn(Optional.of(updated));
+
+        ResponseEntity<Movie> response = subject.updateMovie(123, updated);
+        assertThat(response.getStatusCode().value()).isEqualTo(200);
+    }
     @Test
     @DisplayName("Delete Movie")
     void test_deleteMovie(){
@@ -81,9 +102,6 @@ public class MovieServiceTest {
 
         assertThat(delete.getStatusCode().value()).isEqualTo(204);
     }
-
-
-
 
     @Test
     @DisplayName("Update Movie - Not Found")

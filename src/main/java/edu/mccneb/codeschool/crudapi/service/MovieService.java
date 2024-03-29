@@ -34,13 +34,6 @@ public class MovieService {
         Optional<Movie> optionalMovie =  movieRepository.findById(id);
         if (optionalMovie.isPresent()) {
             Movie movie = optionalMovie.get();
-            try {
-                SSLUtils.turnOffSslChecking();
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            } catch (KeyManagementException e) {
-                throw new RuntimeException(e);
-            }
             Results results = movieClient.getOverview(movie.getMovieTitle());
             Movie mappedMovie = movieMapper.mapMovie(results, movie);
             return ResponseEntity.ok(mappedMovie);
@@ -50,9 +43,9 @@ public class MovieService {
     }
 
     public ResponseEntity<Movie> deleteMovie(Integer id) {
-        Movie movie = movieRepository.findById(id).get();
-        if (movie != null) {
-            movieRepository.delete(movie);
+        Optional<Movie> movie = movieRepository.findById(id);
+        if (movie.isPresent()) {
+            movieRepository.delete(movie.get());
             return new ResponseEntity<>(null, HttpStatus. NO_CONTENT);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

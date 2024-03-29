@@ -77,9 +77,25 @@ public class DirectorServiceTest {
         assertThat(delete.getStatusCode().value()).isEqualTo(204);
     }
 
+    @Test
+    @DisplayName("Delete Director - Not Found")
+    void test_deleteDirector_NotFound(){
+        when(directorRepository.findById(any())).thenReturn(Optional.empty());
 
+        ResponseEntity<Director> response = subject.deleteDirector(123);
+        assertThat(response.getStatusCode().value()).isEqualTo(404);
+    }
 
+    @Test
+    @DisplayName("Update Director")
+    void test_updateDirector(){
+        Director updated = new Director();
+        when(directorRepository.save(any())).thenReturn(updated);
+        when(directorRepository.findById(any())).thenReturn(Optional.of(updated));
 
+        ResponseEntity<Director> response = subject.updateDirector(123, updated);
+        assertThat(response.getStatusCode().value()).isEqualTo(200);
+    }
     @Test
     @DisplayName("Update Director - Not Found")
     void test_updateDirector_NotFound(){

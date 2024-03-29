@@ -78,24 +78,25 @@ public class ActorServiceTest {
 
         assertThat(delete.getStatusCode().value()).isEqualTo(204);
     }
-//    @Test
-//    @DisplayName("Delete Actor - Not Found")
-//    void test_deleteActor_NotFound(){
-//        Actor actor = new Actor();
-//
-//        ResponseEntity<Actor> response = subject.deleteActor(actor.getId());
-//        assertThat(response.getStatusCode().value()).isEqualTo(404);
-//    }
+    @Test
+    @DisplayName("Delete Actor - Not Found")
+    void test_deleteActor_NotFound(){
+        when(actorRepository.findById(any())).thenReturn(Optional.empty());
 
-//    @Test
-//    @DisplayName("Update Actor")
-//    void test_updateActor(){
-//        Actor updated = new Actor();
-//        when(actorRepository.save(any())).thenReturn(updated);
-//
-//        ResponseEntity<Actor> response = subject.updateActor(123, updated);
-//        assertThat(response.getStatusCode().value()).isEqualTo(200);
-//    }
+        ResponseEntity<Actor> response = subject.deleteActor(123);
+        assertThat(response.getStatusCode().value()).isEqualTo(404);
+    }
+
+    @Test
+    @DisplayName("Update Actor")
+    void test_updateActor(){
+        Actor updated = new Actor();
+        when(actorRepository.save(any())).thenReturn(updated);
+        when(actorRepository.findById(any())).thenReturn(Optional.of(updated));
+
+        ResponseEntity<Actor> response = subject.updateActor(123, updated);
+        assertThat(response.getStatusCode().value()).isEqualTo(200);
+    }
     @Test
     @DisplayName("Update Actor - Not Found")
     void test_updateActor_NotFound(){

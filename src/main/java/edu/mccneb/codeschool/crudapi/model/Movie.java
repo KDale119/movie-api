@@ -1,13 +1,17 @@
 package edu.mccneb.codeschool.crudapi.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.List;
 
 @Entity(name = "Movies")
 public class Movie {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID")
+    @Column(name = "movieid")
     private Integer id;
     @Column(name = "movielength")
     private Integer movieLength;
@@ -29,7 +33,17 @@ public class Movie {
     @JoinColumn(name = "ratingid")
     private Rating rating;
 
+    public List<Actor> getActors() {
+        return actors;
+    }
 
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movieid"), inverseJoinColumns = @JoinColumn(name = "actorid"))
+    private List<Actor> actors;
     public Integer getId() {
         return id;
     }

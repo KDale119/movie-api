@@ -9,7 +9,7 @@ public class Actor {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID")
+    @Column(name = "actorid")
     private Integer id;
     @Column(name = "dateofbirth")
     private String dateOfBirth;

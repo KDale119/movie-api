@@ -33,9 +33,9 @@ public class ActorService {
     }
 
     public ResponseEntity<Actor> deleteActor(Integer id) {
-        Actor actor = actorRepository.findById(id).get();
-        if (actor != null) {
-            actorRepository.delete(actor);
+        Optional <Actor> actor = actorRepository.findById(id);
+        if (actor.isPresent()) {
+            actorRepository.delete(actor.get());
             return new ResponseEntity<>(null, HttpStatus. NO_CONTENT);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

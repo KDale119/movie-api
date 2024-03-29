@@ -1,6 +1,7 @@
 package edu.mccneb.codeschool.crudapi.service;
 
 import edu.mccneb.codeschool.crudapi.Repository.DirectorRepository;
+import edu.mccneb.codeschool.crudapi.Repository.MovieRepository;
 import edu.mccneb.codeschool.crudapi.model.Director;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,11 @@ import java.util.Optional;
 @Service
 public class DirectorService {
     private final DirectorRepository directorRepository;
+    private final MovieRepository movieRepository;
 
-    public DirectorService(DirectorRepository directorRepository) {
+    public DirectorService(DirectorRepository directorRepository, MovieRepository movieRepository) {
         this.directorRepository = directorRepository;
+        this.movieRepository = movieRepository;
     }
 
     public ResponseEntity<List<Director>> getAllDirectors() {
@@ -22,7 +25,7 @@ public class DirectorService {
     }
 
     public ResponseEntity<Director> findDirectorById(Integer id) {
-        Optional<Director> optionalDirector =  directorRepository.findById(id);
+        Optional<Director> optionalDirector = directorRepository.findById(id);
         if (optionalDirector.isPresent()) {
             return ResponseEntity.ok(optionalDirector.get());
         } else {
@@ -33,19 +36,27 @@ public class DirectorService {
     public ResponseEntity<Director> deleteDirector(Integer id) {
         Optional<Director> director = directorRepository.findById(id);
         if (director.isPresent()) {
-            directorRepository.delete(director.get());
-            return new ResponseEntity<>(null, HttpStatus. NO_CONTENT);
+            Director toDelete = director.get();
+            if (toDelete.getMovies() != null) {
+                toDelete.getMovies().stream().forEach(movie -> {
+                    movie.setDirector(null);
+                    movieRepository.save(movie);
+                });
+            }
+            directorRepository.delete(toDelete);
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
     public ResponseEntity<Director> addDirector(Director add) {
         add = directorRepository.save(add);
         return ResponseEntity.ok(add);
     }
 
     public ResponseEntity<Director> updateDirector(Integer id, Director update) {
-        Optional<Director> updatedDirector =  directorRepository.findById(id);
+        Optional<Director> updatedDirector = directorRepository.findById(id);
         if (updatedDirector.isPresent()) {
             update = directorRepository.save(update);
             return ResponseEntity.ok(updatedDirector.get());

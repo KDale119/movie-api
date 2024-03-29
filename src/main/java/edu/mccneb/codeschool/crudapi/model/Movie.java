@@ -1,8 +1,6 @@
 package edu.mccneb.codeschool.crudapi.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -44,6 +42,7 @@ public class Movie {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "movie_actors", joinColumns = @JoinColumn(name = "movieid"), inverseJoinColumns = @JoinColumn(name = "actorid"))
     private List<Actor> actors;
+
     public Integer getId() {
         return id;
     }

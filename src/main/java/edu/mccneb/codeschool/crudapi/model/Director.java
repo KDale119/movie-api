@@ -1,5 +1,9 @@
 package edu.mccneb.codeschool.crudapi.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity(name = "Directors")
@@ -15,6 +19,10 @@ public class Director {
     private String firstName;
     @Column(name = "lastname")
     private String lastName;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "director", cascade = CascadeType.DETACH)
+    private List<Movie> movies;
 
     public Integer getId() {
         return id;
@@ -47,4 +55,13 @@ public class Director {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
 }

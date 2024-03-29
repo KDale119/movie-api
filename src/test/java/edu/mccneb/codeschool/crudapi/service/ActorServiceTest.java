@@ -4,7 +4,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import edu.mccneb.codeschool.crudapi.Repository.ActorRepository;
+import edu.mccneb.codeschool.crudapi.Repository.MovieRepository;
 import edu.mccneb.codeschool.crudapi.model.Actor;
+import edu.mccneb.codeschool.crudapi.model.Movie;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,9 +16,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,6 +32,8 @@ public class ActorServiceTest {
     @Mock
     private ActorRepository actorRepository;
 
+    @Mock
+    private MovieRepository movieRepository;
 
     @Test
     @DisplayName("Create Actor")
@@ -40,17 +46,19 @@ public class ActorServiceTest {
 
         assertThat(resp.getBody().getId()).isNotNull();
     }
+
     @Test
     @DisplayName("Get All Actors")
-    void test_getAllActors(){
+    void test_getAllActors() {
         Actor actor = new Actor();
         subject.addActor(actor);
         ResponseEntity<List<Actor>> response = subject.getAllActors();
         assertThat(response.getStatusCode().value()).isEqualTo(200);
     }
+
     @Test
     @DisplayName("Get Actor")
-    void test_getActor(){
+    void test_getActor() {
         Actor actor = new Actor();
         actor.setId(1);
         when(actorRepository.findById(any())).thenReturn(Optional.of(actor));
@@ -60,17 +68,19 @@ public class ActorServiceTest {
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getId().toString()).isEqualTo(actor.getId().toString());
     }
+
     @Test
     @DisplayName("Get Actor - Not Found")
-    void test_getActor_NotFound(){
+    void test_getActor_NotFound() {
 
         ResponseEntity<Actor> response = subject.findActorById(1);
         assertThat(response.getStatusCode().value()).isEqualTo(404);
         assertThat(response.getBody()).isNull();
     }
+
     @Test
     @DisplayName("Delete Actor")
-    void test_deleteActor(){
+    void test_deleteActor() {
         Actor actor = new Actor();
 
         when(actorRepository.findById(any())).thenReturn(Optional.of(actor));
@@ -78,9 +88,24 @@ public class ActorServiceTest {
 
         assertThat(delete.getStatusCode().value()).isEqualTo(204);
     }
+
+    @Test
+    @DisplayName("Delete Actor")
+    void test_deleteActor_withMovies() {
+        Actor actor = new Actor();
+        Movie movie = new Movie();
+        actor.setMovies(Collections.singletonList(movie));
+        movie.setActors(new ArrayList<>());
+
+        when(actorRepository.findById(any())).thenReturn(Optional.of(actor));
+        ResponseEntity<Actor> delete = subject.deleteActor(actor.getId());
+
+        assertThat(delete.getStatusCode().value()).isEqualTo(204);
+    }
+
     @Test
     @DisplayName("Delete Actor - Not Found")
-    void test_deleteActor_NotFound(){
+    void test_deleteActor_NotFound() {
         when(actorRepository.findById(any())).thenReturn(Optional.empty());
 
         ResponseEntity<Actor> response = subject.deleteActor(123);
@@ -89,7 +114,7 @@ public class ActorServiceTest {
 
     @Test
     @DisplayName("Update Actor")
-    void test_updateActor(){
+    void test_updateActor() {
         Actor updated = new Actor();
         when(actorRepository.save(any())).thenReturn(updated);
         when(actorRepository.findById(any())).thenReturn(Optional.of(updated));
@@ -97,9 +122,10 @@ public class ActorServiceTest {
         ResponseEntity<Actor> response = subject.updateActor(123, updated);
         assertThat(response.getStatusCode().value()).isEqualTo(200);
     }
+
     @Test
     @DisplayName("Update Actor - Not Found")
-    void test_updateActor_NotFound(){
+    void test_updateActor_NotFound() {
         Actor updated = new Actor();
         ResponseEntity<Actor> response = subject.updateActor(123, updated);
         assertThat(response.getStatusCode().value()).isEqualTo(404);

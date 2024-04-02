@@ -32,6 +32,13 @@ insert into movies (movieName, movieLength, releaseDate, trailerUrl, directorid,
 insert into movies (movieName, movieLength, releaseDate, trailerUrl, directorid, genreid, ratingid) values ('The Messenger: Joan of Arc', 2.5, '1999-10-18','https://www.youtube.com/embed/rWVO2cDKeng?si=WRGl6PB15fe4vUG4', 2, 1, 4);--2
 insert into movies (movieName, movieLength, releaseDate, trailerUrl, directorid, genreid, ratingid) values ('Uptown Girls', 1.5, '2003-08-15', 'https://www.youtube.com/embed/ftSY4DW5tEk?si=fIEtSBrvNdByaN9D', 3, 2, 3);--2
 
+insert into movie_actors(actorid, movieid) values (2,1);
+insert into movie_actors(actorid, movieid) values (1,1);
 
+insert into movie_actors(actorid, movieid) values (3,2);
+insert into movie_actors(actorid, movieid) values (4,2);
+
+insert into movie_actors(actorid, movieid) values (5,3);
+insert into movie_actors(actorid, movieid) values (6,3);
 
 -- add dobs
